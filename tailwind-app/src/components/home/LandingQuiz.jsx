@@ -111,17 +111,17 @@ function AnswerButton({ isSelected, onClick, children }) {
     <button
       type="button"
       onClick={onClick}
-      className={`group w-full rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
+      className={`group w-full rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${
         isSelected
           ? 'border-emerald-300 bg-emerald-50 text-slate-900 shadow-sm'
-          : 'border-white/10 bg-white/5 text-white hover:border-white/20 hover:bg-white/10'
+          : 'border-slate-200 bg-white text-slate-900 hover:border-slate-300 hover:bg-slate-50'
       }`}
     >
       <span className="flex items-center justify-between gap-3">
         <span className="leading-snug">{children}</span>
         <span
           className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border text-sm transition ${
-            isSelected ? 'border-emerald-200 bg-white text-emerald-700' : 'border-white/15 bg-white/5 text-white/80'
+            isSelected ? 'border-emerald-200 bg-white text-emerald-700' : 'border-slate-200 bg-white text-slate-700'
           }`}
           aria-hidden="true"
         >
@@ -172,7 +172,7 @@ export default function LandingQuiz({ categories }) {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white shadow-sm backdrop-blur transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+          className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
         >
           Find my best path (5 questions) →
         </button>
@@ -181,13 +181,13 @@ export default function LandingQuiz({ categories }) {
   }
 
   return (
-    <section className="mt-8 overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-lg backdrop-blur">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-4">
+    <section className="mt-2 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 px-5 py-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-200">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">
             {isUrdu ? 'Aapke liye best method' : 'Find your best method'}
           </p>
-          <p className="mt-1 text-sm text-slate-200">
+          <p className="mt-1 text-sm text-slate-700">
             {isUrdu ? '5 sawalat, instant recommendation.' : '5 questions. Instant recommendation.'}
           </p>
         </div>
@@ -195,7 +195,7 @@ export default function LandingQuiz({ categories }) {
           <button
             type="button"
             onClick={() => setIsUrdu((prev) => !prev)}
-            className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-white transition hover:bg-white/10"
+            className="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-900 transition hover:bg-slate-50"
             aria-pressed={isUrdu}
           >
             {isUrdu ? 'English' : 'Urdu / Roman'}
@@ -203,7 +203,7 @@ export default function LandingQuiz({ categories }) {
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-white/90 transition hover:bg-white/10"
+            className="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
           >
             Close
           </button>
@@ -212,17 +212,17 @@ export default function LandingQuiz({ categories }) {
 
       <div className="px-5 py-5">
         <div className="flex items-center justify-between gap-3">
-          <p className="text-xs font-semibold text-white/80">
+          <p className="text-xs font-semibold text-slate-600">
             {isFinished ? (isUrdu ? 'Done' : 'Done') : `${isUrdu ? 'Step' : 'Step'} ${stepIndex + 1} / ${totalSteps}`}
           </p>
-          <div className="h-2 w-40 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full rounded-full bg-gradient-to-r from-emerald-300 via-sky-300 to-purple-300" style={{ width: `${progressPercent}%` }} />
+          <div className="h-2 w-40 overflow-hidden rounded-full bg-slate-100">
+            <div className="h-full rounded-full bg-gradient-to-r from-emerald-500 via-sky-500 to-purple-500" style={{ width: `${progressPercent}%` }} />
           </div>
         </div>
 
         {!isFinished ? (
           <>
-            <h3 className="mt-4 text-lg font-semibold text-white">{isUrdu ? step.labelUr : step.label}</h3>
+            <h3 className="mt-4 text-lg font-semibold text-slate-950">{isUrdu ? step.labelUr : step.label}</h3>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               {step.options.map((option) => (
                 <AnswerButton
@@ -242,7 +242,7 @@ export default function LandingQuiz({ categories }) {
               <button
                 type="button"
                 onClick={() => setStepIndex((prev) => Math.max(prev - 1, 0))}
-                className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10 disabled:opacity-50"
+                className="rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-50 disabled:opacity-50"
                 disabled={stepIndex === 0}
               >
                 ← Back
@@ -250,7 +250,7 @@ export default function LandingQuiz({ categories }) {
               <button
                 type="button"
                 onClick={reset}
-                className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+                className="rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
               >
                 Reset
               </button>
@@ -258,8 +258,8 @@ export default function LandingQuiz({ categories }) {
           </>
         ) : (
           <div className="mt-4">
-            <h3 className="text-lg font-semibold text-white">{isUrdu ? 'Aapke top 3 options' : 'Your top 3 options'}</h3>
-            <p className="mt-2 text-sm text-slate-200">
+            <h3 className="text-lg font-semibold text-slate-950">{isUrdu ? 'Aapke top 3 options' : 'Your top 3 options'}</h3>
+            <p className="mt-2 text-sm text-slate-700">
               {isUrdu
                 ? 'Neeche recommended methods hain. Pehle wali se start karain.'
                 : 'These are recommended based on your answers. Start with the first one.'}
@@ -270,15 +270,15 @@ export default function LandingQuiz({ categories }) {
                 <Link
                   key={item.slug}
                   to={`/categories/${item.slug}`}
-                  className="group rounded-2xl border border-white/10 bg-slate-950/40 p-4 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                  className="group rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                 >
                   <p className="text-2xl">{item.icon}</p>
-                  <p className="mt-2 text-sm font-semibold text-white">
+                  <p className="mt-2 text-sm font-semibold text-slate-950">
                     {index === 0 ? (isUrdu ? 'Best match: ' : 'Best match: ') : ''}
                     {item.title}
                   </p>
-                  <p className="mt-2 text-sm text-slate-200">{item.overview}</p>
-                  <p className="mt-3 text-sm font-semibold text-emerald-200 group-hover:text-emerald-100">Open guide →</p>
+                  <p className="mt-2 text-sm text-slate-700">{item.overview}</p>
+                  <p className="mt-3 text-sm font-semibold text-emerald-700 group-hover:text-emerald-800">Open guide →</p>
                 </Link>
               ))}
             </div>
@@ -286,14 +286,14 @@ export default function LandingQuiz({ categories }) {
             <div className="mt-5 flex flex-wrap gap-3">
               <Link
                 to="/start-here"
-                className="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-100"
+                className="inline-flex items-center justify-center rounded-2xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-900"
               >
                 Open the beginner roadmap →
               </Link>
               <button
                 type="button"
                 onClick={reset}
-                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10"
+                className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50"
               >
                 Try again
               </button>
