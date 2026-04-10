@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import DailyTipCard from '../components/home/DailyTipCard'
 import LandingQuiz from '../components/home/LandingQuiz'
@@ -111,45 +112,118 @@ function Stat({ label, value }) {
   )
 }
 
+function QuizModal({ isOpen, onClose }) {
+  useEffect(() => {
+    if (!isOpen) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', onKeyDown)
+    }
+  }, [isOpen, onClose])
+
+  if (!isOpen) return null
+
+  return (
+    <div className="fixed inset-0 z-50">
+      <div className="absolute inset-0 bg-slate-950/50 backdrop-blur-sm" onMouseDown={onClose} aria-hidden="true" />
+      <div className="relative mx-auto flex h-full max-w-3xl items-center px-4 py-6 sm:px-6">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Quick recommendations quiz"
+          className="w-full overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl"
+          onMouseDown={(e) => e.stopPropagation()}
+        >
+          <div className="flex items-center justify-between gap-3 border-b border-slate-200 px-5 py-4">
+            <div className="min-w-0">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">Quick quiz</p>
+              <p className="mt-1 truncate text-sm font-semibold text-slate-950">Answer 5 questions → get your best method</p>
+            </div>
+            <button
+              type="button"
+              onClick={onClose}
+              className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            >
+              Close
+            </button>
+          </div>
+          <div className="max-h-[80vh] overflow-y-auto px-5 py-5">
+            <LandingQuiz categories={categories} />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function HomePage() {
+  const [isQuizOpen, setIsQuizOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+
+  useEffect(() => {
+    const key = 'home.quizModalSeen.v1'
+    try {
+      const hasSeen = window.localStorage.getItem(key) === '1'
+      if (!hasSeen) {
+        setIsQuizOpen(true)
+        window.localStorage.setItem(key, '1')
+      }
+    } catch {
+      setIsQuizOpen(true)
+    }
+  }, [])
+
+  const filteredCategories = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase()
+    if (!q) return categories.slice(0, 6)
+    return categories
+      .filter((c) => `${c.title} ${c.overview} ${c.description}`.toLowerCase().includes(q))
+      .slice(0, 6)
+  }, [searchQuery])
+
   return (
     <>
-      <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-white">
+      <QuizModal isOpen={isQuizOpen} onClose={() => setIsQuizOpen(false)} />
+
+      <section className="relative overflow-hidden bg-white">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-28 -top-28 h-[34rem] w-[34rem] rounded-full bg-gradient-to-br from-emerald-200/70 via-sky-200/45 to-purple-200/55 blur-3xl" />
-          <div className="absolute -bottom-36 -right-32 h-[36rem] w-[36rem] rounded-full bg-gradient-to-tr from-amber-200/55 via-rose-200/35 to-emerald-200/55 blur-3xl" />
-          <div
-            className="absolute inset-0 opacity-[0.18]"
-            style={{
-              backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(15,23,42,0.10) 1px, transparent 0)',
-              backgroundSize: '24px 24px',
-            }}
-          />
+          <div className="absolute -left-32 -top-40 h-[38rem] w-[38rem] rounded-full bg-gradient-to-br from-emerald-200/55 via-sky-200/40 to-purple-200/50 blur-3xl" />
+          <div className="absolute -bottom-48 -right-44 h-[42rem] w-[42rem] rounded-full bg-gradient-to-tr from-amber-200/45 via-rose-200/30 to-emerald-200/50 blur-3xl" />
         </div>
 
-        <div className="relative mx-auto max-w-6xl px-4 pb-10 pt-12 sm:px-6 sm:pb-14 sm:pt-14">
+        <div className="relative mx-auto max-w-6xl px-4 pb-10 pt-10 sm:px-6 sm:pb-12 sm:pt-12">
           <div className="flex flex-wrap items-center gap-2">
-            <Badge tone="emerald">Beginner-safe</Badge>
-            <Badge tone="sky">No hype</Badge>
-            <Badge tone="amber">App-like progress</Badge>
+            <Badge tone="emerald">For beginners</Badge>
+            <Badge tone="sky">Realistic</Badge>
+            <Badge>Track progress</Badge>
           </div>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-12 lg:items-start">
+          <div className="mt-6 grid gap-6 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-7">
               <h1 className="text-4xl font-semibold leading-tight tracking-tight text-slate-950 sm:text-5xl">
-                Start earning online with a calm plan—not random videos.
+                Online earning, explained like a product—not a lecture.
               </h1>
-              <p className="mt-5 max-w-2xl text-base text-slate-700 sm:text-lg">
-                Pick one method that fits your time + budget, then follow a checklist you can actually finish. This is a roadmap + tracker built for beginners.
+              <p className="mt-4 max-w-2xl text-base text-slate-700 sm:text-lg">
+                Choose a method that fits your time and budget. Get a clear weekly loop, checklist steps, and scam-safe guidance.
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Link
-                  to="/start-here"
-                  className="inline-flex items-center justify-center rounded-2xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              <div className="mt-6 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={() => setIsQuizOpen(true)}
+                  className="inline-flex items-center justify-center rounded-2xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                 >
-                  Start here (5 minutes)
-                </Link>
+                  Get recommendation (quiz)
+                </button>
                 <Link
                   to="/categories"
                   className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
@@ -157,67 +231,69 @@ export default function HomePage() {
                   Browse methods
                 </Link>
                 <Link
-                  to="/progress"
+                  to="/start-here"
                   className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white/70 px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm backdrop-blur transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                 >
-                  My progress
+                  Start here
                 </Link>
               </div>
 
-              <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                <Stat label="Method clarity" value="Pick 1 for 30 days" />
-                <Stat label="Daily action" value="15–45 minutes" />
-                <Stat label="Scam-proof" value="Red flags included" />
+              <div className="mt-7 grid gap-3 sm:grid-cols-3">
+                <Stat label="Most popular" value="Freelancing" />
+                <Stat label="Fastest start" value="1–3 weeks" />
+                <Stat label="Low budget" value="Free tools" />
               </div>
 
-              <div className="mt-7 flex flex-wrap gap-2">
-                <Badge>Saved checklists (offline)</Badge>
-                <Badge>Beginner language</Badge>
-                <Badge>Real ranges, not promises</Badge>
+              <div className="mt-6 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">Find a method</p>
+                    <p className="mt-1 text-sm text-slate-700">Search like “freelancing”, “remote jobs”, “content”.</p>
+                  </div>
+                  <Link to="/compare" className="text-sm font-semibold text-emerald-700 hover:text-emerald-800">
+                    Compare methods →
+                  </Link>
+                </div>
+                <div className="mt-3 flex flex-col gap-3 sm:flex-row">
+                  <input
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search methods…"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-900 shadow-sm outline-none placeholder:text-slate-400 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-200"
+                    aria-label="Search earning methods"
+                  />
+                  <Link
+                    to="/categories"
+                    className="inline-flex items-center justify-center rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-900"
+                  >
+                    View all →
+                  </Link>
+                </div>
               </div>
             </div>
 
             <div className="lg:col-span-5">
-              <div className="rounded-3xl border border-slate-200/70 bg-white/70 p-1 shadow-sm backdrop-blur">
-                <div className="rounded-[22px] bg-white p-5">
-                  <div className="flex items-center justify-between gap-3">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">Quick personal guide</p>
-                      <h2 className="mt-2 text-xl font-semibold text-slate-950">Answer 5 questions → get your best method</h2>
-                    </div>
-                    <span className="hidden rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700 sm:inline-flex">
-                      60 seconds
-                    </span>
-                  </div>
-                  <div className="mt-4">
-                    <LandingQuiz categories={categories} />
-                  </div>
+              <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">Today’s momentum</p>
+                <div className="mt-3">
+                  <DailyTipCard />
                 </div>
               </div>
 
-              <div className="mt-4 rounded-3xl border border-slate-200/70 bg-white/70 p-1 shadow-sm backdrop-blur">
-                <div className="rounded-[22px] bg-white p-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">Today’s momentum</p>
-                  <div className="mt-3">
-                    <DailyTipCard />
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              <div className="mt-4 grid gap-3">
                 <ActionTile
-                  to="/compare"
-                  tone="sky"
-                  eyebrow="Decide faster"
-                  title="Compare two methods"
-                  body="Side‑by‑side difficulty, risk, investment, speed, and who each method fits best."
+                  to="/progress"
+                  tone="emerald"
+                  eyebrow="Track"
+                  title="Saved checklists"
+                  body="Mark steps complete and keep progress stored locally (works with weak internet)."
                 />
                 <ActionTile
                   to="/scam-warnings"
                   tone="amber"
                   eyebrow="Safety"
                   title="Scam warnings (must read)"
-                  body="Learn the red flags in 60 seconds so you don’t waste months or money."
+                  body="Red flags that save you time, money, and stress—especially as a beginner."
                 />
               </div>
             </div>
@@ -225,7 +301,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-sm font-semibold text-emerald-800">Featured methods</p>
@@ -243,7 +319,7 @@ export default function HomePage() {
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {categories.slice(0, 6).map((item) => (
+          {filteredCategories.map((item) => (
             <FeaturedCategoryCard key={item.slug} item={item} />
           ))}
         </div>
