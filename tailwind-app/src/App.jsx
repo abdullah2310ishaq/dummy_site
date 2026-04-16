@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import PostDetailPage from './pages/PostDetailPage'
 import ProgressPage from './pages/ProgressPage'
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import ScamWarningsPage from './pages/ScamWarningsPage'
 import StartHerePage from './pages/StartHerePage'
 import ComparePage from './pages/ComparePage'
@@ -28,6 +29,7 @@ function App() {
         <Route path="/scam-warnings" element={<ScamWarningsPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/home" element={<Navigate to="/" replace />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

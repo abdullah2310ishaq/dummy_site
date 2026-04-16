@@ -17,6 +17,7 @@ const footerLinks = [
       { label: 'Scam Warnings', to: '/scam-warnings' },
       { label: 'About', to: '/about' },
       { label: 'Contact', to: '/contact' },
+      { label: 'Privacy Policy', to: '/privacy-policy' },
     ],
   },
 ]
@@ -97,7 +98,10 @@ export default function SiteFooter() {
           <p className="text-xs text-slate-500">
             &copy; {new Date().getFullYear()} OnlineEarningGuide.net — All rights reserved.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <Link to="/privacy-policy" className="text-xs text-slate-500 transition-colors hover:text-slate-700">
+              Privacy Policy
+            </Link>
             <span className="text-xs text-slate-500">Affiliate links are clearly disclosed.</span>
             <span className="text-xs text-slate-500">No income guarantees.</span>
           </div>
