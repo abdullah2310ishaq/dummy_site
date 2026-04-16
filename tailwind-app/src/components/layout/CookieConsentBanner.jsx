@@ -40,5 +40,6 @@ export default function CookieConsentBanner() {
         </Link>
       </div>
     </div>
+    // abdullah is good person
   )
 }
