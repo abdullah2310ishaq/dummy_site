@@ -18,6 +18,8 @@ const footerLinks = [
       { label: 'About', to: '/about' },
       { label: 'Contact', to: '/contact' },
       { label: 'Privacy Policy', to: '/privacy-policy' },
+      { label: 'Terms & Conditions', to: '/terms-and-conditions' },
+      { label: 'Disclaimer', to: '/disclaimer' },
     ],
   },
 ]
@@ -101,6 +103,12 @@ export default function SiteFooter() {
           <div className="flex flex-wrap items-center justify-center gap-6">
             <Link to="/privacy-policy" className="text-xs text-slate-500 transition-colors hover:text-slate-700">
               Privacy Policy
+            </Link>
+            <Link to="/terms-and-conditions" className="text-xs text-slate-500 transition-colors hover:text-slate-700">
+              Terms & Conditions
+            </Link>
+            <Link to="/disclaimer" className="text-xs text-slate-500 transition-colors hover:text-slate-700">
+              Disclaimer
             </Link>
             <span className="text-xs text-slate-500">Affiliate links are clearly disclosed.</span>
             <span className="text-xs text-slate-500">No income guarantees.</span>

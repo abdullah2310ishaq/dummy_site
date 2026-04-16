@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import AdSenseAutoAds from '../ads/AdSenseAutoAds'
+import CookieConsentBanner from './CookieConsentBanner'
 import SiteFooter from './SiteFooter'
 import SiteHeader from './SiteHeader'
 
@@ -12,6 +13,7 @@ export default function SiteLayout() {
         <Outlet />
       </main>
       <SiteFooter />
+      <CookieConsentBanner />
     </div>
   )
 }

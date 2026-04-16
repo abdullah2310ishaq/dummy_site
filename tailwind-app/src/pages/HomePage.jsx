@@ -376,6 +376,7 @@ export default function HomePage() {
               <div className="mt-5 flex flex-wrap gap-4 text-sm font-semibold">
                 <Link to="/about" className="text-emerald-700 hover:text-emerald-800">Editorial policy &rarr;</Link>
                 <Link to="/contact" className="text-emerald-700 hover:text-emerald-800">Ask a question &rarr;</Link>
+                <Link to="/privacy-policy" className="text-emerald-700 hover:text-emerald-800">Privacy policy &rarr;</Link>
               </div>
             </div>
           </div>
