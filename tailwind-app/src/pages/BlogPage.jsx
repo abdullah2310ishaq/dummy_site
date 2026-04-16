@@ -17,8 +17,15 @@ export default function BlogPage() {
             <h2 className="mt-2 text-xl font-semibold text-slate-900">{post.title}</h2>
             <p className="mt-2 text-sm text-slate-600">{post.excerpt}</p>
             <p className="mt-3 text-xs text-slate-500">
-              {post.readTime} • {post.publishedAt}
+              {post.readTime} • {post.publishedAt} • {post.wordCount} words
             </p>
+            <p className="mt-1 text-xs text-slate-500">
+              By{' '}
+              <Link to={`/authors/${post.authorSlug}`} className="font-medium text-emerald-700 hover:text-emerald-800">
+                {post.author}
+              </Link>
+            </p>
+            <p className="mt-1 text-xs text-slate-500">Last reviewed: {post.updatedAt}</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {post.tags.map((tag) => (
                 <span key={tag} className="rounded-full bg-slate-100 px-2 py-1 text-xs text-slate-700">

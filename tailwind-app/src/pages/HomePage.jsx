@@ -28,7 +28,7 @@ function FeaturedCategoryCard({ item }) {
   return (
     <Link
       to={`/categories/${item.slug}`}
-      className="group block overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-2xl"
+      className="group block overflow-hidden rounded-3xl border border-slate-200/80 bg-white/95 shadow-sm shadow-slate-900/5 transition duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-2xl hover:shadow-emerald-100/40"
       aria-label={`Open ${item.title} guide`}
     >
       <div className="relative h-44 overflow-hidden">
@@ -78,8 +78,10 @@ function QuickActionCard({ to, eyebrow, title, body, warning = false }) {
   return (
     <Link
       to={to}
-      className={`block rounded-3xl border p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${
-        warning ? 'border-amber-200 bg-amber-50/70' : 'border-slate-200 bg-white'
+      className={`block rounded-3xl border p-6 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg ${
+        warning
+          ? 'border-amber-200/80 bg-gradient-to-b from-amber-50 to-amber-100/70'
+          : 'border-slate-200/80 bg-gradient-to-b from-white to-slate-50/70'
       }`}
     >
       <p className={`text-xs font-semibold uppercase tracking-[0.16em] ${warning ? 'text-amber-700' : 'text-emerald-700'}`}>
@@ -95,7 +97,7 @@ function QuickActionCard({ to, eyebrow, title, body, warning = false }) {
 function SectionHeading({ eyebrow, title, body }) {
   return (
     <div className="max-w-2xl">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">{eyebrow}</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-700">{eyebrow}</p>
       <h2 className="mt-3 text-3xl font-semibold italic leading-tight text-slate-900 sm:text-5xl">{title}</h2>
       {body ? <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">{body}</p> : null}
     </div>
@@ -133,19 +135,21 @@ export default function HomePage() {
   ]
 
   return (
-    <div className="bg-slate-50">
-      <section className="relative overflow-hidden border-b border-slate-800">
+    <div className="bg-gradient-to-b from-slate-100 via-slate-50 to-white">
+      <section className="relative overflow-hidden border-b border-slate-800/80">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2200&q=80"
             alt="Modern work setup"
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-900/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/90 to-slate-900/75" />
+          <div className="absolute -top-32 -left-24 h-72 w-72 rounded-full bg-emerald-400/20 blur-3xl" />
+          <div className="absolute -right-16 top-1/3 h-64 w-64 rounded-full bg-sky-400/20 blur-3xl" />
         </div>
 
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-12 lg:py-20">
-          <div className="space-y-7 lg:col-span-7">
+          <div className="space-y-8 lg:col-span-7">
             <div className="flex flex-wrap gap-2">
               <span className="rounded-full border border-emerald-400/40 bg-emerald-400/10 px-3 py-1 text-xs font-semibold text-emerald-200">
                 For beginners
@@ -177,40 +181,40 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="#method-quiz"
-                className="rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold italic text-white shadow-lg shadow-emerald-500/30 transition hover:bg-emerald-400"
+                className="rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 px-5 py-3 text-sm font-semibold italic text-white shadow-lg shadow-emerald-500/30 transition hover:from-emerald-400 hover:to-emerald-300"
               >
                 Find my best method &rarr;
               </a>
               <Link
                 to="/categories"
-                className="rounded-xl border border-white/40 bg-white/10 px-5 py-3 text-sm font-semibold italic text-white backdrop-blur transition hover:bg-white/20"
+                className="rounded-xl border border-white/35 bg-white/10 px-5 py-3 text-sm font-semibold italic text-white backdrop-blur-md transition hover:bg-white/20"
               >
                 Browse all methods
               </Link>
               <Link
                 to="/start-here"
-                className="rounded-xl border border-white/40 bg-white/10 px-5 py-3 text-sm font-semibold italic text-white backdrop-blur transition hover:bg-white/20"
+                className="rounded-xl border border-white/35 bg-white/10 px-5 py-3 text-sm font-semibold italic text-white backdrop-blur-md transition hover:bg-white/20"
               >
                 Start here
               </Link>
             </div>
 
             <div className="grid gap-3 sm:grid-cols-3">
-              <div className="rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur">
+              <div className="rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-md">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-300">Top pick</p>
                 <p className="mt-2 text-lg font-semibold italic text-white">Freelancing</p>
               </div>
-              <div className="rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur">
+              <div className="rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-md">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-300">Fastest start</p>
                 <p className="mt-2 text-lg font-semibold italic text-white">1-3 wks</p>
               </div>
-              <div className="rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur">
+              <div className="rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-md">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-300">Min. budget</p>
                 <p className="mt-2 text-lg font-semibold italic text-white">Free</p>
               </div>
             </div>
 
-            <div className="rounded-3xl border border-white/20 bg-white/95 p-5 shadow-2xl">
+            <div className="rounded-3xl border border-white/20 bg-white/95 p-5 shadow-2xl shadow-slate-900/30">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Find a method</p>
@@ -236,7 +240,7 @@ export default function HomePage() {
           </div>
 
           <div className="space-y-4 lg:col-span-5">
-            <div className="rounded-3xl border border-white/20 bg-white/95 p-4 shadow-2xl">
+            <div className="rounded-3xl border border-white/20 bg-white/95 p-4 shadow-2xl shadow-slate-900/30">
               <p className="px-2 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700">Today&apos;s Momentum</p>
               <div className="mt-3">
                 <DailyTipCard />
@@ -259,7 +263,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
             eyebrow="Featured Methods"
@@ -278,7 +282,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-slate-100 py-16 text-slate-900">
+      <section className="bg-gradient-to-b from-slate-100 to-slate-50 py-20 text-slate-900">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-12">
           <div className="space-y-7 lg:col-span-7">
             <SectionHeading
@@ -292,7 +296,7 @@ export default function HomePage() {
                 { n: '02', title: 'Run weekly loop', body: 'Learn -> publish -> apply -> review. Momentum beats perfect.' },
                 { n: '03', title: 'Scale what works', body: 'One skill plus one channel. Remove distractions ruthlessly.' },
               ].map((step) => (
-                <article key={step.n} className="rounded-2xl border border-slate-200 bg-white p-4">
+                <article key={step.n} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm shadow-slate-900/5">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700">{step.n}</p>
                   <h3 className="mt-2 text-base font-semibold italic text-slate-900">{step.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-600">{step.body}</p>
@@ -309,7 +313,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 lg:col-span-5">
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm shadow-slate-900/5 lg:col-span-5">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-700">Pick a Path</p>
             <h3 className="mt-2 text-2xl font-semibold italic text-slate-900">Three simple earning paths</h3>
             <div className="mt-5 space-y-4">
@@ -331,7 +335,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-slate-200 bg-white py-16">
+      <section className="border-y border-slate-200 bg-white py-20">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-12">
           <div className="lg:col-span-8">
             <SectionHeading eyebrow="Latest Guides" title="Practical content for this week" />
@@ -340,7 +344,7 @@ export default function HomePage() {
                 <Link
                   key={post.slug}
                   to={`/blog/${post.slug}`}
-                  className="block rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                  className="block rounded-3xl border border-slate-200 bg-white p-5 shadow-sm shadow-slate-900/5 transition hover:-translate-y-0.5 hover:shadow-lg"
                 >
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Guide</p>
                   <h3 className="mt-2 text-base font-semibold italic leading-7 text-slate-900">{post.title}</h3>
@@ -352,7 +356,7 @@ export default function HomePage() {
           </div>
 
           <div className="space-y-4 lg:col-span-4">
-            <div className="rounded-3xl border border-amber-200 bg-amber-50/70 p-6">
+            <div className="rounded-3xl border border-amber-200 bg-gradient-to-b from-amber-50 to-amber-100/70 p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-700">Scam Shield</p>
               <h3 className="mt-2 text-xl font-semibold italic text-slate-900">Know the red flags</h3>
               <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-700">
@@ -365,7 +369,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <div className="rounded-3xl border border-slate-200 bg-white p-6">
+            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm shadow-slate-900/5">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700">Trust & Transparency</p>
               <h3 className="mt-2 text-xl font-semibold italic text-slate-900">Why this feels safe</h3>
               <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-700">
@@ -383,7 +387,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
         <div className="grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SectionHeading
@@ -393,13 +397,13 @@ export default function HomePage() {
             />
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               {trendingSkills2026.map((skill) => (
-                <div key={skill} className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 shadow-sm">
+                <div key={skill} className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 shadow-sm shadow-slate-900/5">
                   {skill}
                 </div>
               ))}
             </div>
           </div>
-          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm lg:col-span-7">
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm shadow-slate-900/5 lg:col-span-7">
             <div className="border-b border-slate-200 p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700">Income Estimator</p>
               <h3 className="mt-2 text-2xl font-semibold italic text-slate-900">Realistic earning ranges</h3>
@@ -434,19 +438,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
         <SectionHeading eyebrow="FAQ" title="Common questions, straight answers" />
         <div className="mt-7 grid gap-4 md:grid-cols-2">
           {faqItems.map((item) => (
-            <article key={item.q} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+            <article key={item.q} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm shadow-slate-900/5">
               <h3 className="text-base font-semibold italic text-slate-900">{item.q}</h3>
               <p className="mt-3 text-sm leading-7 text-slate-600">{item.a}</p>
             </article>
           ))}
         </div>
       </section>
-      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6">
-        <div className="rounded-3xl bg-slate-900 p-7 text-white sm:p-10">
+      <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6">
+        <div className="rounded-3xl bg-gradient-to-r from-slate-950 via-slate-900 to-slate-800 p-7 text-white shadow-2xl shadow-slate-900/30 sm:p-10">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-300">Get Unstuck</p>
           <div className="mt-4 grid gap-6 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
@@ -466,7 +470,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section id="method-quiz" className="mx-auto max-w-7xl px-4 pb-16 sm:px-6">
+      <section id="method-quiz" className="mx-auto max-w-7xl px-4 pb-20 sm:px-6">
         <SectionHeading
           eyebrow="Method Finder"
           title="Find your best method in 5 questions"

@@ -20,6 +20,7 @@ const footerLinks = [
       { label: 'Privacy Policy', to: '/privacy-policy' },
       { label: 'Terms & Conditions', to: '/terms-and-conditions' },
       { label: 'Disclaimer', to: '/disclaimer' },
+      { label: 'HTML Sitemap', to: '/sitemap' },
     ],
   },
 ]
@@ -64,16 +65,6 @@ export default function SiteFooter() {
                   <path d="M12 2a10 10 0 0 0-8.72 14.89L2 22l5.25-1.37A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.08-1.12l-.3-.17-3.12.82.84-3.04-.2-.31A8 8 0 1 1 12 20Zm4.39-5.78c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06a6.57 6.57 0 0 1-1.93-1.19 7.27 7.27 0 0 1-1.34-1.66c-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42l-.46-.01c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.69 2.58 4.1 3.62.57.25 1.01.4 1.36.52.57.18 1.08.16 1.49.1.45-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z" />
                 </svg>
               </SocialIcon>
-              <SocialIcon href="#" label="Twitter / X">
-                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </SocialIcon>
-              <SocialIcon href="#" label="YouTube">
-                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
-                  <path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.8 31.8 0 0 0 0 12a31.8 31.8 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.8 31.8 0 0 0 24 12a31.8 31.8 0 0 0-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
-                </svg>
-              </SocialIcon>
             </div>
           </div>
 
@@ -109,6 +100,9 @@ export default function SiteFooter() {
             </Link>
             <Link to="/disclaimer" className="text-xs text-slate-500 transition-colors hover:text-slate-700">
               Disclaimer
+            </Link>
+            <Link to="/sitemap" className="text-xs text-slate-500 transition-colors hover:text-slate-700">
+              Sitemap
             </Link>
             <span className="text-xs text-slate-500">Affiliate links are clearly disclosed.</span>
             <span className="text-xs text-slate-500">No income guarantees.</span>

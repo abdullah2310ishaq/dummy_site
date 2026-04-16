@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
@@ -21,6 +23,26 @@ export default function AboutPage() {
           <li>We clearly disclose affiliate relationships when used.</li>
           <li>We avoid fake testimonials and unverifiable income screenshots.</li>
         </ul>
+      </section>
+
+      <section className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h2 className="text-xl font-semibold text-slate-900">Editorial Team and Review Process</h2>
+        <p className="mt-3 text-sm leading-relaxed text-slate-700">
+          Articles are created by the Online Earning Guide editorial team and reviewed by our fact-check desk before
+          publishing updates. We review core content periodically to keep examples and recommendations relevant.
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-slate-700">
+          For corrections or feedback, please contact us at virtualtech42@gmail.com. We aim to review valid corrections
+          as quickly as possible.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-4 text-sm font-semibold">
+          <Link to="/authors/editorial-team" className="text-emerald-700 hover:text-emerald-800">
+            View Editorial Team
+          </Link>
+          <Link to="/authors/fact-check-desk" className="text-emerald-700 hover:text-emerald-800">
+            View Fact Check Desk
+          </Link>
+        </div>
       </section>
     </div>
   )

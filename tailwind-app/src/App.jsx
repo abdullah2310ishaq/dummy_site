@@ -6,12 +6,15 @@ import CategoriesPage from './pages/CategoriesPage'
 import CategoryDetailPage from './pages/CategoryDetailPage'
 import ContactPage from './pages/ContactPage'
 import DisclaimerPage from './pages/DisclaimerPage'
+import AuthorProfilePage from './pages/AuthorProfilePage'
+import ArticleTemplatePage from './pages/ArticleTemplatePage'
 import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import PostDetailPage from './pages/PostDetailPage'
 import ProgressPage from './pages/ProgressPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import ScamWarningsPage from './pages/ScamWarningsPage'
+import SitemapPage from './pages/SitemapPage'
 import StartHerePage from './pages/StartHerePage'
 import TermsAndConditionsPage from './pages/TermsAndConditionsPage'
 import ComparePage from './pages/ComparePage'
@@ -31,9 +34,12 @@ function App() {
         <Route path="/scam-warnings" element={<ScamWarningsPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/authors/:slug" element={<AuthorProfilePage />} />
+        <Route path="/article-template" element={<ArticleTemplatePage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
         <Route path="/disclaimer" element={<DisclaimerPage />} />
+        <Route path="/sitemap" element={<SitemapPage />} />
         <Route path="/home" element={<Navigate to="/" replace />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

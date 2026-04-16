@@ -20,8 +20,10 @@ function NavItem({ to, label, onNavigate }) {
       to={to}
       onClick={onNavigate}
       className={({ isActive }) =>
-        `rounded-md px-3 py-2 text-sm font-medium transition ${
-          isActive ? 'bg-emerald-100 text-emerald-800' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
+        `rounded-lg px-3 py-2 text-sm font-medium transition ${
+          isActive
+            ? 'bg-emerald-100 text-emerald-800 shadow-sm'
+            : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
         }`
       }
     >
@@ -42,7 +44,13 @@ export default function SiteHeader() {
   const closeMenu = () => setIsOpen(false)
 
   return (
-    <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b border-slate-200/80 bg-white/85 backdrop-blur-md">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-emerald-700 focus:shadow"
+      >
+        Skip to main content
+      </a>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <Link to="/" className="shrink-0">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700">OnlineEarningGuide.net</p>
@@ -60,7 +68,7 @@ export default function SiteHeader() {
           Menu
         </button>
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Desktop navigation">
+        <nav className="hidden items-center gap-1 rounded-xl border border-slate-200/80 bg-white/80 px-2 py-1 shadow-sm md:flex" aria-label="Desktop navigation">
           {navigationItems.map((item) => (
             <NavItem key={item.to} to={item.to} label={item.label} />
           ))}
