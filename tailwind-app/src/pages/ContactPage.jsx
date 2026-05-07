@@ -1,54 +1,44 @@
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
-      <p className="text-sm font-semibold text-emerald-700">Contact</p>
-      <h1 className="mt-1 text-3xl font-bold text-slate-900 md:text-4xl">Ask a Question</h1>
-      <p className="mt-3 text-slate-600">
-        Share your current situation and goals. We will use this section to help readers with practical next steps.
+    <div className="page-shell">
+      <p className="text-sm font-semibold text-brand-700 dark:text-brand-300">Contact</p>
+      <h1 className="mt-2 text-4xl font-semibold italic tracking-tight text-ink-900 dark:text-white sm:text-5xl">Contact Us</h1>
+      <p className="mt-4 max-w-3xl text-ink-600 dark:text-white/70">
+        Thank you for visiting Online Earning Guide. If you have questions, suggestions, feedback, or business inquiries, feel free
+        to contact us anytime.
       </p>
 
-      <form className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" onSubmit={(event) => event.preventDefault()}>
-        <div className="grid gap-4 md:grid-cols-2">
-          <label className="text-sm font-medium text-slate-700">
-            Name
-            <input
-              type="text"
-              className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none ring-emerald-500 focus:ring-2"
-              placeholder="Your name"
-            />
-          </label>
-          <label className="text-sm font-medium text-slate-700">
-            Email
-            <input
-              type="email"
-              className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none ring-emerald-500 focus:ring-2"
-              placeholder="you@example.com"
-            />
-          </label>
-        </div>
-        <label className="mt-4 block text-sm font-medium text-slate-700">
-          Topic
-          <input
-            type="text"
-            className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none ring-emerald-500 focus:ring-2"
-            placeholder="Freelancing, remote jobs, content creation, etc."
-          />
-        </label>
-        <label className="mt-4 block text-sm font-medium text-slate-700">
-          Message
-          <textarea
-            rows={6}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none ring-emerald-500 focus:ring-2"
-            placeholder="Tell us your goals, current skills, and what you need help with."
-          />
-        </label>
-        <button
-          type="submit"
-          className="mt-4 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700"
-        >
-          Send Message
-        </button>
-      </form>
+      <div className="mt-10 space-y-5 rounded-4xl border border-ink-200/70 bg-white p-8 shadow-soft dark:border-white/10 dark:bg-white/5">
+        <section>
+          <h2 className="text-2xl font-semibold tracking-tight text-ink-900 dark:text-white">Get in touch</h2>
+          <p className="mt-4 text-sm leading-relaxed text-ink-700 dark:text-white/80">
+            Email: <span className="font-semibold text-ink-900 dark:text-white">support@onlineearningguide.net</span>
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-ink-700 dark:text-white/80">
+            Website: <span className="font-semibold text-ink-900 dark:text-white">https://www.onlineearningguide.net</span>
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold tracking-tight text-ink-900 dark:text-white">Why contact us?</h2>
+          <ul className="mt-4 grid gap-2 text-sm text-ink-700 dark:text-white/80 sm:grid-cols-2">
+            <li>General questions and support</li>
+            <li>Business inquiries</li>
+            <li>Collaboration opportunities</li>
+            <li>Website feedback and suggestions</li>
+            <li>Reporting technical issues</li>
+            <li>Content-related queries</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold tracking-tight text-ink-900 dark:text-white">Important note</h2>
+          <p className="mt-4 text-sm leading-relaxed text-ink-700 dark:text-white/80">
+            Online Earning Guide shares educational and informational content. We do not guarantee financial results, because
+            success depends on skills, consistency, effort, and experience.
+          </p>
+        </section>
+      </div>
     </div>
   )
 }

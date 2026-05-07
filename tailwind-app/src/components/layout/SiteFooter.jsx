@@ -4,17 +4,13 @@ const footerLinks = [
   {
     title: 'Explore',
     links: [
-      { label: 'Start Here', to: '/start-here' },
-      { label: 'All Methods', to: '/categories' },
-      { label: 'Compare', to: '/compare' },
+      { label: 'Home', to: '/' },
       { label: 'Blog', to: '/blog' },
     ],
   },
   {
     title: 'Resources',
     links: [
-      { label: 'Progress Tracker', to: '/progress' },
-      { label: 'Scam Warnings', to: '/scam-warnings' },
       { label: 'About', to: '/about' },
       { label: 'Contact', to: '/contact' },
       { label: 'Privacy Policy', to: '/privacy-policy' },
@@ -32,7 +28,7 @@ function SocialIcon({ href, label, children }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-300 bg-white text-slate-600 transition-all duration-300 hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700"
+      className="flex h-10 w-10 items-center justify-center rounded-2xl border border-ink-200/70 bg-white text-ink-600 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:bg-white/10 dark:hover:text-white"
     >
       {children}
     </a>
@@ -41,23 +37,22 @@ function SocialIcon({ href, label, children }) {
 
 export default function SiteFooter() {
   return (
-    <footer className="relative z-[1] border-t border-slate-200 bg-slate-50">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-slate-100/80 to-slate-200/60" />
+    <footer className="relative z-[1] border-t border-ink-200/60 bg-ink-50 dark:border-white/10 dark:bg-ink-950">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-ink-100/60 to-ink-200/40 dark:via-white/5 dark:to-white/0" />
 
       <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-8">
         <div className="grid gap-12 md:grid-cols-4">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10 border border-accent/20">
-                <span className="text-base font-bold text-accent-light">O</span>
-              </div>
               <div>
-                <p className="text-base font-bold tracking-tight text-slate-900">OnlineEarningGuide</p>
-                <p className="text-[10px] font-medium uppercase tracking-widest text-slate-500">.net</p>
+                <p className="text-base font-bold tracking-tight text-ink-900 dark:text-white">Online Earning Guide</p>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-ink-500 dark:text-white/50">
+                  Learn • Build • Grow
+                </p>
               </div>
             </div>
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-slate-600">
-              Honest, practical guidance for people who want to build real online income — no hype, no false promises. Just proven methods and clear steps.
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-600 dark:text-white/70">
+              Premium, beginner-friendly guides for online earning in 2026 and beyond. Clear steps, safety notes, and no fake promises.
             </p>
             <div className="mt-6 flex gap-3">
               <SocialIcon href="https://wa.me/923329492342" label="WhatsApp">
@@ -70,13 +65,13 @@ export default function SiteFooter() {
 
           {footerLinks.map((group) => (
             <div key={group.title}>
-              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">{group.title}</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-ink-500 dark:text-white/50">{group.title}</h3>
               <ul className="mt-5 space-y-3">
                 {group.links.map((link) => (
                   <li key={link.to}>
                     <Link
                       to={link.to}
-                      className="text-sm text-slate-600 transition-colors duration-200 hover:text-slate-900"
+                      className="text-sm text-ink-600 transition-colors duration-200 hover:text-ink-900 dark:text-white/70 dark:hover:text-white"
                     >
                       {link.label}
                     </Link>
@@ -87,25 +82,23 @@ export default function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col items-center gap-4 border-t border-slate-200 pt-8 md:flex-row md:justify-between">
-          <p className="text-xs text-slate-500">
+        <div className="mt-14 flex flex-col items-center gap-4 border-t border-ink-200/60 pt-8 dark:border-white/10 md:flex-row md:justify-between">
+          <p className="text-xs text-ink-500 dark:text-white/50">
             &copy; {new Date().getFullYear()} OnlineEarningGuide.net — All rights reserved.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <Link to="/privacy-policy" className="text-xs text-slate-500 transition-colors hover:text-slate-700">
+            <Link to="/privacy-policy" className="text-xs text-ink-500 transition-colors hover:text-ink-700 dark:text-white/50 dark:hover:text-white/80">
               Privacy Policy
             </Link>
-            <Link to="/terms-and-conditions" className="text-xs text-slate-500 transition-colors hover:text-slate-700">
+            <Link to="/terms-and-conditions" className="text-xs text-ink-500 transition-colors hover:text-ink-700 dark:text-white/50 dark:hover:text-white/80">
               Terms & Conditions
             </Link>
-            <Link to="/disclaimer" className="text-xs text-slate-500 transition-colors hover:text-slate-700">
+            <Link to="/disclaimer" className="text-xs text-ink-500 transition-colors hover:text-ink-700 dark:text-white/50 dark:hover:text-white/80">
               Disclaimer
             </Link>
-            <Link to="/sitemap" className="text-xs text-slate-500 transition-colors hover:text-slate-700">
+            <Link to="/sitemap" className="text-xs text-ink-500 transition-colors hover:text-ink-700 dark:text-white/50 dark:hover:text-white/80">
               Sitemap
             </Link>
-            <span className="text-xs text-slate-500">Affiliate links are clearly disclosed.</span>
-            <span className="text-xs text-slate-500">No income guarantees.</span>
           </div>
         </div>
       </div>

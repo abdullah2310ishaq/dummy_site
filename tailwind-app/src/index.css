@@ -6,13 +6,19 @@
   box-sizing: border-box;
 }
 
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  color: #0f172a;
-  background-color: #f8fafc;
+  font-family: 'Open Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 
 a {
@@ -26,4 +32,68 @@ input:focus-visible,
 textarea:focus-visible {
   outline: 2px solid #10b981;
   outline-offset: 2px;
+}
+
+@layer base {
+  body {
+    @apply bg-ink-50 text-ink-900 antialiased;
+  }
+
+  html.dark body {
+    @apply bg-ink-950 text-ink-50;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply tracking-tight;
+  }
+
+  /* Editorial rhythm for long-form pages */
+  p {
+    @apply leading-7;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply mx-auto max-w-6xl px-4 py-12 sm:px-6;
+  }
+
+  .surface {
+    @apply rounded-3xl border border-ink-200/70 bg-white shadow-soft;
+  }
+
+  .dark .surface {
+    @apply border-white/10 bg-white/5;
+  }
+
+  .surface-muted {
+    @apply rounded-3xl border border-ink-200/70 bg-ink-50;
+  }
+
+  .dark .surface-muted {
+    @apply border-white/10 bg-white/5;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-brand-500 active:translate-y-[1px];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl border border-ink-300/80 bg-white px-5 py-3 text-sm font-semibold text-ink-800 shadow-sm transition hover:bg-ink-50 active:translate-y-[1px];
+  }
+
+  .dark .btn-secondary {
+    @apply border-white/15 bg-white/5 text-white hover:bg-white/10;
+  }
+
+  .tag {
+    @apply inline-flex items-center rounded-full border border-ink-200/70 bg-ink-50 px-3 py-1 text-xs font-semibold text-ink-700;
+  }
+
+  .dark .tag {
+    @apply border-white/10 bg-white/5 text-white/80;
+  }
 }

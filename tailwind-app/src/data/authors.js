@@ -11,7 +11,7 @@ export const authors = [
       'We remove exaggerated claims and include risk notes in every guide.',
       'We update published posts when market conditions or platform rules change.',
     ],
-    contactEmail: 'virtualtech42@gmail.com',
+    contactEmail: 'support@onlineearningguide.net',
   },
   {
     slug: 'fact-check-desk',
@@ -25,6 +25,6 @@ export const authors = [
       'Flag unsupported numbers, guarantees, and unrealistic promises.',
       'Approve updates only after consistency, clarity, and compliance checks.',
     ],
-    contactEmail: 'virtualtech42@gmail.com',
+    contactEmail: 'support@onlineearningguide.net',
   },
 ]
